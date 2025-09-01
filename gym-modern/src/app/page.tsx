@@ -69,7 +69,7 @@ const GymLanding = () => {
       text: "FitForge transformed my fitness journey completely! Lost 15kg in 6 months with their amazing trainers.",
       rating: 5,
       image:
-        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face",
     },
     {
       name: "Rahul Verma",
@@ -85,9 +85,14 @@ const GymLanding = () => {
       text: "The yoga and strength training combo here is perfect. Highly recommend for busy professionals!",
       rating: 5,
       image:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
     },
   ];
+
+  // Function to open the transformation video
+  const openTransformationVideo = () => {
+    setActiveVideo("transformation");
+  };
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
@@ -220,11 +225,11 @@ const GymLanding = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <button className="bg-gradient-to-r from-orange-500 to-red-500 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:shadow-orange-500/30 transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
-              Start Your Journey <FaArrowRight />
+              Start Your Journey <FaDumbbell />
             </button>
             <button
               className="border-2 border-orange-500 px-8 py-4 rounded-full font-semibold text-lg hover:bg-orange-500 hover:text-black transition-all duration-300 flex items-center gap-2"
-              onClick={() => setActiveVideo("hero")}
+              onClick={openTransformationVideo}
             >
               <FaPlay /> Watch Our Story
             </button>
@@ -252,18 +257,6 @@ const GymLanding = () => {
             ))}
           </motion.div>
         </div>
-
-        {/* Floating Elements */}
-        {/* <motion.div
-          className="absolute top-20 left-10 w-20 h-20 border-2 border-orange-500/30 rounded-full"
-          animate={{ rotate: 360, scale: [1, 1.2, 1] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-10 w-16 h-16 border-2 border-red-500/30 rounded-full"
-          animate={{ rotate: -360, scale: [1, 0.8, 1] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-        /> */}
       </section>
 
       {/* Programs Section */}
@@ -310,7 +303,7 @@ const GymLanding = () => {
                 description:
                   "Burn fat and improve cardiovascular health with high-intensity workouts",
                 image:
-                  "https://images.unsplash.com/photo-1571019613914-85e3dbf2b74a?w=400&h=300&fit=crop",
+                  "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
                 features: ["HIIT Classes", "Running Programs", "Cycling"],
               },
               {
@@ -423,7 +416,7 @@ const GymLanding = () => {
                 specialty: "Strength & Conditioning",
                 experience: "8+ Years",
                 image:
-                  "https://images.unsplash.com/photo-1571019613914-85e3dbf2b74a?w=400&h=500&fit=crop",
+                  "https://images.unsplash.com/photo-1594381898411-846e7d193883?w=400&h=500&fit=crop&crop=face",
                 certifications: ["ACSM Certified", "Nutrition Specialist"],
               },
               {
@@ -431,7 +424,7 @@ const GymLanding = () => {
                 specialty: "Yoga & Wellness",
                 experience: "10+ Years",
                 image:
-                  "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=500&fit=crop",
+                  "https://images.unsplash.com/photo-1545167622-3a6ac756afa4?w=400&h=500&fit=crop&crop=face",
                 certifications: ["RYT 500", "Wellness Coach"],
               },
               {
@@ -674,7 +667,7 @@ const GymLanding = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-1">Call Us</h3>
-                  <p className="text-gray-300">+91 98765 43210</p>
+                  <p className="text-gray-300">+91 1002243210</p>
                 </div>
               </div>
 
@@ -688,17 +681,7 @@ const GymLanding = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-4">
-                <div className="bg-gradient-to-r from-orange-500 to-red-500 p-3 rounded-full">
-                  <FaMapMarkerAlt className="text-xl" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-1">Visit Us</h3>
-                  <p className="text-gray-300">
-                    123 Fitness Street, Mumbai, Maharashtra 400001
-                  </p>
-                </div>
-              </div>
+              
 
               <div className="flex gap-4 pt-4">
                 {[FaFacebook, FaInstagram, FaTwitter].map((Icon, index) => (
@@ -797,7 +780,7 @@ const GymLanding = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Get Started Today <FaArrowRight />
+                Get Started Today <FaDumbbell />
               </motion.button>
             </motion.form>
           </div>
@@ -869,7 +852,7 @@ const GymLanding = () => {
                     <span className="text-gray-300 hover:text-orange-500 transition-colors duration-300 cursor-pointer">
                       {program}
                     </span>
-                  </li>
+                    </li>
                 ))}
               </ul>
             </div>
@@ -928,16 +911,18 @@ const GymLanding = () => {
               >
                 <FaTimes className="text-white" />
               </button>
-              <div className="aspect-video bg-gradient-to-br from-orange-500/20 to-red-500/20 flex items-center justify-center">
-                <div className="text-center">
-                  <FaPlay className="text-6xl text-orange-500 mb-4 mx-auto" />
-                  <h3 className="text-2xl font-bold text-white mb-2">
-                    Our Fitness Journey
-                  </h3>
-                  <p className="text-gray-300">
-                    Experience the transformation at FitForge
-                  </p>
-                </div>
+              
+              <div className="aspect-video">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/VNs_cCtdbPc?autoplay=1"
+                  title="Fitness Transformation Stories"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                ></iframe>
               </div>
             </motion.div>
           </motion.div>
