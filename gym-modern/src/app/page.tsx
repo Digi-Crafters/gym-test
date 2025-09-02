@@ -5,7 +5,6 @@ import {
   FaDumbbell,
   FaPhone,
   FaEnvelope,
-  FaMapMarkerAlt,
   FaInstagram,
   FaFacebook,
   FaTwitter,
@@ -16,6 +15,7 @@ import {
   FaTimes,
   FaCheckCircle,
 } from "react-icons/fa";
+import Image from "next/image";
 
 const GymLanding = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -213,9 +213,9 @@ const GymLanding = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Join India's most advanced fitness center and unlock your potential
-            with world-class equipment, expert trainers, and a supportive
-            community.
+            Join India&#39;s most advanced fitness center and unlock your
+            potential with world-class equipment, expert trainers, and a
+            supportive community.
           </motion.p>
 
           <motion.div
@@ -357,9 +357,11 @@ const GymLanding = () => {
                 whileHover={{ y: -5 }}
               >
                 <div className="relative overflow-hidden">
-                  <img
+                  <Image
                     src={program.image}
                     alt={program.title}
+                    width={100}
+                    height={48}
                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -446,9 +448,11 @@ const GymLanding = () => {
                 whileHover={{ y: -10 }}
               >
                 <div className="relative overflow-hidden">
-                  <img
+                  <Image
                     src={trainer.image}
                     alt={trainer.name}
+                    width={400}
+                    height={500}
                     className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
@@ -601,10 +605,12 @@ const GymLanding = () => {
                 whileHover={{ y: -5 }}
               >
                 <div className="flex items-center mb-4">
-                  <img
+                  <Image
                     src={testimonial.image}
                     alt={testimonial.name}
                     className="w-12 h-12 rounded-full mr-4 object-cover"
+                    width={48}
+                    height={48}
                   />
                   <div>
                     <h4 className="font-semibold text-white">
@@ -622,7 +628,9 @@ const GymLanding = () => {
                   ))}
                 </div>
 
-                <p className="text-gray-300 italic">"{testimonial.text}"</p>
+                <p className="text-gray-300 italic">
+                  &quot;{testimonial.text}&quot;
+                </p>
               </motion.div>
             ))}
           </div>
@@ -680,8 +688,6 @@ const GymLanding = () => {
                   <p className="text-gray-300">info@fitforge.in</p>
                 </div>
               </div>
-
-              
 
               <div className="flex gap-4 pt-4">
                 {[FaFacebook, FaInstagram, FaTwitter].map((Icon, index) => (
@@ -799,7 +805,7 @@ const GymLanding = () => {
                 </span>
               </div>
               <p className="text-gray-300 mb-6 max-w-md">
-                Transform your body and mind at India's premier fitness
+                Transform your body and mind at India&#39;s premier fitness
                 destination. Join thousands who have already started their
                 journey to a healthier, stronger life.
               </p>
@@ -852,7 +858,7 @@ const GymLanding = () => {
                     <span className="text-gray-300 hover:text-orange-500 transition-colors duration-300 cursor-pointer">
                       {program}
                     </span>
-                    </li>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -865,22 +871,16 @@ const GymLanding = () => {
               </p>
               <div className="flex gap-6 text-sm">
                 <a
-                  href="#"
+                  href="/privacy-policy"
                   className="text-gray-400 hover:text-orange-500 transition-colors duration-300"
                 >
                   Privacy Policy
                 </a>
                 <a
-                  href="#"
+                  href="/terms-and-services"
                   className="text-gray-400 hover:text-orange-500 transition-colors duration-300"
                 >
-                  Terms of Service
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-orange-500 transition-colors duration-300"
-                >
-                  Cookie Policy
+                  Terms and Services
                 </a>
               </div>
             </div>
@@ -911,7 +911,7 @@ const GymLanding = () => {
               >
                 <FaTimes className="text-white" />
               </button>
-              
+
               <div className="aspect-video">
                 <iframe
                   width="100%"
