@@ -414,7 +414,7 @@ const GymLanding = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                name: "Arjun Singh",
+                name: "Priya Mehta",
                 specialty: "Strength & Conditioning",
                 experience: "8+ Years",
                 image:
@@ -422,7 +422,7 @@ const GymLanding = () => {
                 certifications: ["ACSM Certified", "Nutrition Specialist"],
               },
               {
-                name: "Priya Mehta",
+                name: "Arjun Singh",
                 specialty: "Yoga & Wellness",
                 experience: "10+ Years",
                 image:
