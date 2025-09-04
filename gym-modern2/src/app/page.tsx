@@ -1,4 +1,5 @@
 "use client";
+import Link from 'next/link';
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -21,6 +22,14 @@ import {
   FaTrophy,
   FaUsers,
   FaClock,
+  FaRunning,
+  FaWeight,
+  FaCrown,
+  FaShieldAlt,
+  FaGem,
+  FaAward,
+  FaLeaf,
+  FaMagic,
 } from "react-icons/fa";
 
 const GradientGymLanding = () => {
@@ -56,6 +65,7 @@ const GradientGymLanding = () => {
       ],
       popular: false,
       icon: FaHeart,
+      planIcons: [FaRunning, FaWeight, FaLeaf],
     },
     {
       name: "Power Elite",
@@ -70,6 +80,7 @@ const GradientGymLanding = () => {
       ],
       popular: true,
       icon: FaBolt,
+      planIcons: [FaTrophy, FaShieldAlt, FaGem],
     },
     {
       name: "Champion",
@@ -84,6 +95,7 @@ const GradientGymLanding = () => {
       ],
       popular: false,
       icon: FaTrophy,
+      planIcons: [FaCrown, FaAward, FaMagic],
     },
   ];
 
@@ -93,24 +105,21 @@ const GradientGymLanding = () => {
       location: "Chennai",
       text: "IronCore's trainers helped me achieve my dream physique. The atmosphere is incredible and motivating!",
       rating: 5,
-      image:
-        "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
     },
     {
       name: "Amit Gupta",
       location: "Pune",
       text: "Best investment I've made for my health. The facilities are world-class and results speak for themselves.",
       rating: 5,
-      image:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
     },
     {
       name: "Shreya Jain",
       location: "Hyderabad",
       text: "From strength training to wellness programs, IronCore has everything. Highly recommended!",
       rating: 5,
-      image:
-        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+      image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face",
     },
   ];
 
@@ -446,7 +455,7 @@ const GradientGymLanding = () => {
                 description:
                   "High-intensity cardiovascular training that burns fat and builds endurance",
                 image:
-                  "https://images.unsplash.com/photo-1571019613914-85e3dbf2b74a?w=500&h=400&fit=crop",
+                  "https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?w=500&h=400&fit=crop",
                 features: [
                   "HIIT Training",
                   "Fat Burning",
@@ -481,7 +490,7 @@ const GradientGymLanding = () => {
                 description:
                   "One-on-one coaching with customized programming for maximum results",
                 image:
-                  "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=500&h=400&fit=crop",
+                  "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&h=400&fit=crop", // Fixed image URL
                 features: [
                   "1-on-1 Coaching",
                   "Custom Programs",
@@ -517,6 +526,9 @@ const GradientGymLanding = () => {
                     src={program.image}
                     alt={program.title}
                     className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700"
+                    onError={(e) => {
+                      e.target.src = "https://via.placeholder.com/500x400/333/fff?text=Image+Not+Found";
+                    }}
                   />
                   <div
                     className={`absolute inset-0 bg-gradient-to-t ${program.gradient} opacity-0 group-hover:opacity-80 transition-opacity duration-500`}
@@ -588,8 +600,7 @@ const GradientGymLanding = () => {
                 name: "RAJESH WARRIOR",
                 specialty: "Strength & Power",
                 experience: "12+ Years",
-                image:
-                  "https://images.unsplash.com/photo-1571019613914-85e3dbf2b74a?w=400&h=600&fit=crop",
+                image: "https://images.unsplash.com/photo-1594381898411-846e7d193883?w=400&h=600&fit=crop",
                 certifications: ["Master Trainer", "Sports Nutrition"],
                 achievements: "500+ Transformations",
               },
@@ -626,6 +637,9 @@ const GradientGymLanding = () => {
                     src={trainer.image}
                     alt={trainer.name}
                     className="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-700"
+                    onError={(e) => {
+                      e.target.src = "https://via.placeholder.com/400x600/333/fff?text=Image+Not+Found";
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
                   <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -741,6 +755,16 @@ const GradientGymLanding = () => {
                   <h3 className="text-2xl font-black bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-2">
                     {plan.name}
                   </h3>
+                  
+                  {/* Plan Icons Row */}
+                  <div className="flex justify-center gap-4 mb-4">
+                    {plan.planIcons.map((Icon, idx) => (
+                      <div key={idx} className="bg-gradient-to-r from-white/10 to-gray-300/10 backdrop-blur-sm p-3 rounded-xl">
+                        <Icon className="text-xl bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent" />
+                      </div>
+                    ))}
+                  </div>
+                  
                   <div className="flex items-baseline justify-center gap-2 mb-2">
                     <span className="text-4xl font-black bg-gradient-to-r from-white via-gray-200 to-gray-300 bg-clip-text text-transparent">
                       {plan.price}
@@ -829,6 +853,9 @@ const GradientGymLanding = () => {
                     src={testimonial.image}
                     alt={testimonial.name}
                     className="w-16 h-16 rounded-2xl mr-4 object-cover border-2 border-white/20 group-hover:border-white/40 transition-colors duration-300"
+                    onError={(e) => {
+                      e.target.src = "https://via.placeholder.com/150x150/333/fff?text=Image+Not+Found";
+                    }}
                   />
                   <div>
                     <h4 className="font-black text-white text-lg">
@@ -905,7 +932,7 @@ const GradientGymLanding = () => {
                   <h3 className="text-2xl font-black bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-1">
                     CALL US
                   </h3>
-                  <p className="text-gray-300 font-medium">+91 87654 32109</p>
+                  <p className="text-gray-300 font-medium">+91 1002243210</p>
                 </div>
               </div>
 
@@ -917,7 +944,7 @@ const GradientGymLanding = () => {
                   <h3 className="text-2xl font-black bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-1">
                     EMAIL US
                   </h3>
-                  <p className="text-gray-300 font-medium">forge@ironcore.in</p>
+                  <p className="text-gray-300 font-medium">info@fitforge.in</p>
                 </div>
               </div>
 
@@ -936,12 +963,17 @@ const GradientGymLanding = () => {
               </div>
 
               <div className="flex gap-4 pt-6">
-                {[FaFacebook, FaInstagram, FaTwitter].map((Icon, index) => (
+                {[
+                  { Icon: FaFacebook, label: "Facebook" },
+                  { Icon: FaInstagram, label: "Instagram" },
+                  { Icon: FaTwitter, label: "Twitter" }
+                ].map(({ Icon, label }, index) => (
                   <motion.button
                     key={index}
-                    className="bg-gradient-to-r from-white/10 to-gray-300/10 backdrop-blur-sm hover:from-white/20 hover:to-gray-300/20 p-4 rounded-2xl transition-all duration-300 border border-white/10 hover:border-white/30"
+                    className="bg-gradient-to-r from-white/10 to-gray-300/10 backdrop-blur-sm hover:from-white/20 hover:to-gray-300/20 p-4 rounded-2xl transition-all duration-300 border border-white/10 hover:border-white/30 flex items-center justify-center"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     whileTap={{ scale: 0.95 }}
+                    aria-label={label}
                   >
                     <Icon className="text-xl bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent" />
                   </motion.button>
@@ -1070,11 +1102,16 @@ const GradientGymLanding = () => {
                 relentless dedication and world-class training.
               </p>
               <div className="flex gap-4">
-                {[FaFacebook, FaInstagram, FaTwitter].map((Icon, index) => (
+                {[
+                  { Icon: FaFacebook, label: "Facebook" },
+                  { Icon: FaInstagram, label: "Instagram" },
+                  { Icon: FaTwitter, label: "Twitter" }
+                ].map(({ Icon, label }, index) => (
                   <motion.button
                     key={index}
-                    className="bg-gradient-to-r from-white/10 to-gray-300/10 backdrop-blur-sm hover:from-white/20 hover:to-gray-300/20 p-3 rounded-2xl transition-all duration-300 border border-white/10 hover:border-white/30"
+                    className="bg-gradient-to-r from-white/10 to-gray-300/10 backdrop-blur-sm hover:from-white/20 hover:to-gray-300/20 p-3 rounded-2xl transition-all duration-300 border border-white/10 hover:border-white/30 flex items-center justify-center"
                     whileHover={{ scale: 1.1, rotate: 5 }}
+                    aria-label={label}
                   >
                     <Icon className="text-xl bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent" />
                   </motion.button>
@@ -1130,24 +1167,24 @@ const GradientGymLanding = () => {
                 © 2024 IronCore India. All rights reserved.
               </p>
               <div className="flex gap-6 text-sm">
-                <a
+                <Link
                   href="#"
                   className="text-gray-400 hover:text-white transition-colors duration-300 font-medium"
                 >
                   Privacy Policy
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  href="/terms"
                   className="text-gray-400 hover:text-white transition-colors duration-300 font-medium"
                 >
                   Terms of Service
-                </a>
-                <a
+                </Link>
+                <Link
                   href="#"
                   className="text-gray-400 hover:text-white transition-colors duration-300 font-medium"
                 >
                   Cookie Policy
-                </a>
+                </Link>
               </div>
             </div>
           </div>
