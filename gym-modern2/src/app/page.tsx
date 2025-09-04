@@ -34,7 +34,8 @@ import {
 
 const GradientGymLanding = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeVideo, setActiveVideo] = useState(null);
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [showWhatsappModal, setShowWhatsappModal] = useState(false);
 
   // Wave animation variants
   const waveVariants = {
@@ -160,16 +161,54 @@ const GradientGymLanding = () => {
                   </motion.a>
                 )
               )}
-              <motion.button
-                className="bg-gradient-to-r from-white to-gray-300 text-black px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-white/25 transition-all duration-300"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
-                Join Now
-              </motion.button>
-            </div>
-
+                <motion.button
+                  className="bg-gradient-to-r from-white to-gray-300 text-black px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-white/25 transition-all duration-300"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    setShowWhatsappModal(true);
+                  }}
+                >
+                  Join Now
+                </motion.button>
+                {/* WhatsApp Modal */}
+                <AnimatePresence>
+                {showWhatsappModal && (
+                  <motion.div
+                  className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  >
+                  <motion.div
+                    className="bg-white rounded-2xl p-8 max-w-sm w-full text-center shadow-xl"
+                    initial={{ scale: 0.9 }}
+                    animate={{ scale: 1 }}
+                    exit={{ scale: 0.9 }}
+                  >
+                    <h3 className="text-2xl font-bold mb-4 text-black">Contact on WhatsApp</h3>
+                    <p className="text-gray-700 mb-6">To join, please contact us on WhatsApp!</p>
+                    <a
+                    href="https://wa.me/911002243210"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-green-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-green-600 transition"
+                    >
+                    Open WhatsApp
+                    </a>
+                    <button
+                    className="mt-6 text-gray-500 hover:text-black font-medium"
+                    onClick={() => setShowWhatsappModal(false)}
+                    >
+                    Close
+                    </button>
+                  </motion.div>
+                  </motion.div>
+                )}
+                </AnimatePresence>
+              </div>
             {/* Mobile Menu Button */}
             <div className="md:hidden">
               <button
@@ -231,6 +270,7 @@ const GradientGymLanding = () => {
             preserveAspectRatio="none"
           >
             <motion.path
+            //@ts-expect-error
               variants={waveVariants}
               animate="animate"
               fill="url(#wave-gradient)"
@@ -256,6 +296,7 @@ const GradientGymLanding = () => {
             preserveAspectRatio="none"
           >
             <motion.path
+            // @ts-expect-error
               variants={waveVariants}
               animate="animate"
               fill="url(#wave-gradient-2)"
@@ -357,17 +398,19 @@ const GradientGymLanding = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <button className="group bg-gradient-to-r from-white to-gray-300 text-black px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-white/30 transition-all duration-300 transform hover:scale-105 flex items-center gap-3">
+            <button
+              className="group bg-gradient-to-r from-white to-gray-300 text-black px-10 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-white/30 transition-all duration-300 transform hover:scale-105 flex items-center gap-3"
+              onClick={() => {
+                const pricingSection = document.getElementById("pricing");
+                if (pricingSection) {
+                  pricingSection.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+            >
               BEGIN TRANSFORMATION
               <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-300" />
             </button>
-            <button
-              className="group border-2 border-white/50 px-10 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-black transition-all duration-300 flex items-center gap-3"
-              onClick={() => setActiveVideo("hero")}
-            >
-              <FaPlay className="group-hover:scale-110 transition-transform duration-300" />
-              WATCH RESULTS
-            </button>
+            
           </motion.div>
 
           {/* Enhanced Stats */}
@@ -527,7 +570,7 @@ const GradientGymLanding = () => {
                     alt={program.title}
                     className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700"
                     onError={(e) => {
-                      e.target.src = "https://via.placeholder.com/500x400/333/fff?text=Image+Not+Found";
+                      (e.target as HTMLImageElement).src = "https://via.placeholder.com/500x400/333/fff?text=Image+Not+Found";
                     }}
                   />
                   <div
@@ -638,7 +681,7 @@ const GradientGymLanding = () => {
                     alt={trainer.name}
                     className="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-700"
                     onError={(e) => {
-                      e.target.src = "https://via.placeholder.com/400x600/333/fff?text=Image+Not+Found";
+                      (e.target as HTMLImageElement).src = "https://via.placeholder.com/400x600/333/fff?text=Image+Not+Found";
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
@@ -749,7 +792,7 @@ const GradientGymLanding = () => {
                 )}
 
                 <div className="text-center mb-8">
-                  <div className="bg-gradient-to-r from-white/20 to-gray-300/20 backdrop-blur-sm w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <div>
                     <plan.icon className="text-2xl bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent" />
                   </div>
                   <h3 className="text-2xl font-black bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-2">
@@ -759,7 +802,7 @@ const GradientGymLanding = () => {
                   {/* Plan Icons Row */}
                   <div className="flex justify-center gap-4 mb-4">
                     {plan.planIcons.map((Icon, idx) => (
-                      <div key={idx} className="bg-gradient-to-r from-white/10 to-gray-300/10 backdrop-blur-sm p-3 rounded-xl">
+                      <div key={idx} className=" p-3 rounded-xl">
                         <Icon className="text-xl bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent" />
                       </div>
                     ))}
@@ -854,7 +897,7 @@ const GradientGymLanding = () => {
                     alt={testimonial.name}
                     className="w-16 h-16 rounded-2xl mr-4 object-cover border-2 border-white/20 group-hover:border-white/40 transition-colors duration-300"
                     onError={(e) => {
-                      e.target.src = "https://via.placeholder.com/150x150/333/fff?text=Image+Not+Found";
+                      (e.target as HTMLImageElement).src = "https://via.placeholder.com/150x150/333/fff?text=Image+Not+Found";
                     }}
                   />
                   <div>
@@ -1101,22 +1144,22 @@ const GradientGymLanding = () => {
                 Where ordinary people become extraordinary warriors through
                 relentless dedication and world-class training.
               </p>
-              <div className="flex gap-4">
-                {[
-                  { Icon: FaFacebook, label: "Facebook" },
-                  { Icon: FaInstagram, label: "Instagram" },
-                  { Icon: FaTwitter, label: "Twitter" }
-                ].map(({ Icon, label }, index) => (
-                  <motion.button
-                    key={index}
-                    className="bg-gradient-to-r from-white/10 to-gray-300/10 backdrop-blur-sm hover:from-white/20 hover:to-gray-300/20 p-3 rounded-2xl transition-all duration-300 border border-white/10 hover:border-white/30 flex items-center justify-center"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    aria-label={label}
-                  >
-                    <Icon className="text-xl bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent" />
-                  </motion.button>
-                ))}
-              </div>
+           <div className="flex gap-4">
+  {[
+    { Icon: FaFacebook, label: "Facebook" },
+    { Icon: FaInstagram, label: "Instagram" },
+    { Icon: FaTwitter, label: "Twitter" }
+  ].map(({ Icon, label }, index) => (
+    <motion.button
+      key={index}
+      className="bg-gradient-to-r from-white/10 to-gray-300/10 backdrop-blur-sm hover:from-white/20 hover:to-gray-300/20 p-3 rounded-2xl transition-all duration-300 border border-white/10 hover:border-white/30 flex items-center justify-center"
+      whileHover={{ scale: 1.1, rotate: 5 }}
+      aria-label={label}
+    >
+      <Icon className="text-xl text-white" />
+    </motion.button>
+  ))}
+</div>
             </div>
 
             <div>
@@ -1164,26 +1207,14 @@ const GradientGymLanding = () => {
           <div className="border-t border-white/10 mt-12 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-gray-400 mb-4 md:mb-0 font-medium">
-                © 2024 IronCore India. All rights reserved.
+                © 2025 IronCore India. All rights reserved.
               </p>
               <div className="flex gap-6 text-sm">
-                <Link
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 font-medium"
-                >
-                  Privacy Policy
-                </Link>
                 <Link
                   href="/terms"
                   className="text-gray-400 hover:text-white transition-colors duration-300 font-medium"
                 >
                   Terms of Service
-                </Link>
-                <Link
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 font-medium"
-                >
-                  Cookie Policy
                 </Link>
               </div>
             </div>
