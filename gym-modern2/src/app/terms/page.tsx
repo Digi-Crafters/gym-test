@@ -1,7 +1,7 @@
 // app/terms/page.tsx
 "use client";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   FaDumbbell,
   FaArrowLeft,
@@ -135,7 +135,7 @@ const TermsAndServices = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="bg-gradient-to-r from-white/20 to-gray-300/20 backdrop-blur-sm w-24 h-24 rounded-3xl flex items-center justify-center mx-auto mb-6">
-              <FaFileContract className="text-4xl bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent" />
+              <FaFileContract className="text-4xl text-white" />
             </div>
             <h1 className="text-5xl md:text-7xl font-black mb-4">
               TERMS &{" "}
@@ -175,7 +175,7 @@ const TermsAndServices = () => {
                         }`}
                       >
                         <div className="flex items-center gap-3">
-                          <section.icon className="text-lg" />
+                          <section.icon className={`text-lg ${activeSection === section.id ? 'text-black' : 'text-white'}`} />
                           <span>{section.title}</span>
                         </div>
                       </button>
@@ -187,46 +187,47 @@ const TermsAndServices = () => {
 
             {/* Content */}
             <div className="lg:w-3/4">
-              <div className="bg-gradient-to-b from-white/5 to-transparent backdrop-blur-sm border border-white/10 rounded-3xl p-8">
-                {sections.map((section) => (
-                  <motion.div
-                    key={section.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ 
-                      opacity: activeSection === section.id ? 1 : 0,
-                      y: activeSection === section.id ? 0 : 20,
-                      display: activeSection === section.id ? 'block' : 'none'
-                    }}
-                    transition={{ duration: 0.5 }}
-                    className="space-y-6"
-                  >
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="bg-gradient-to-r from-white/20 to-gray-300/20 backdrop-blur-sm p-3 rounded-2xl">
-                        <section.icon className="text-2xl bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent" />
-                      </div>
-                      <h2 className="text-3xl font-black bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                        {section.title}
-                      </h2>
-                    </div>
+              <div className="bg-gradient-to-b from-white/5 to-transparent backdrop-blur-sm border border-white/10 rounded-3xl p-8 min-h-[600px]">
+                <AnimatePresence mode="wait">
+                  {sections.map((section) => (
+                    activeSection === section.id && (
+                      <motion.div
+                        key={section.id}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.3 }}
+                        className="space-y-6"
+                      >
+                        <div className="flex items-center gap-4 mb-6">
+                          <div className="bg-gradient-to-r from-white/20 to-gray-300/20 backdrop-blur-sm p-3 rounded-2xl">
+                            <section.icon className="text-2xl text-white" />
+                          </div>
+                          <h2 className="text-3xl font-black bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                            {section.title}
+                          </h2>
+                        </div>
 
-                    <div className="prose prose-invert max-w-none">
-                      {section.content.split('\n').map((paragraph, index) => (
-                        paragraph.trim() && (
-                          <motion.p 
-                            key={index}
-                            className="text-gray-300 text-lg leading-relaxed mb-4 flex items-start"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: index * 0.1 }}
-                          >
-                            <span className="w-2 h-2 bg-gradient-to-r from-white to-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                            {paragraph.trim()}
-                          </motion.p>
-                        )
-                      ))}
-                    </div>
-                  </motion.div>
-                ))}
+                        <div className="prose prose-invert max-w-none">
+                          {section.content.split('\n').map((paragraph, index) => (
+                            paragraph.trim() && (
+                              <motion.p 
+                                key={index}
+                                className="text-gray-300 text-lg leading-relaxed mb-4 flex items-start"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: index * 0.1 }}
+                              >
+                                <span className="w-2 h-2 bg-gradient-to-r from-white to-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                {paragraph.trim()}
+                              </motion.p>
+                            )
+                          ))}
+                        </div>
+                      </motion.div>
+                    )
+                  ))}
+                </AnimatePresence>
               </div>
 
               {/* Agreement Section */}

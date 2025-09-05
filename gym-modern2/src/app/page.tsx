@@ -969,7 +969,7 @@ const GradientGymLanding = () => {
             >
               <div className="flex items-center gap-6 group">
                 <div className="bg-gradient-to-r from-white/20 to-gray-300/20 backdrop-blur-sm p-4 rounded-2xl group-hover:scale-110 transition-transform duration-300">
-                  <FaPhone className="text-2xl bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent" />
+                  <FaPhone className="text-2xl text-white" />
                 </div>
                 <div>
                   <h3 className="text-2xl font-black bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-1">
@@ -979,9 +979,10 @@ const GradientGymLanding = () => {
                 </div>
               </div>
 
+
               <div className="flex items-center gap-6 group">
                 <div className="bg-gradient-to-r from-white/20 to-gray-300/20 backdrop-blur-sm p-4 rounded-2xl group-hover:scale-110 transition-transform duration-300">
-                  <FaEnvelope className="text-2xl bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent" />
+                  <FaEnvelope className="text-2xl text-white" />
                 </div>
                 <div>
                   <h3 className="text-2xl font-black bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-1">
@@ -993,7 +994,7 @@ const GradientGymLanding = () => {
 
               <div className="flex items-center gap-6 group">
                 <div className="bg-gradient-to-r from-white/20 to-gray-300/20 backdrop-blur-sm p-4 rounded-2xl group-hover:scale-110 transition-transform duration-300">
-                  <FaMapMarkerAlt className="text-2xl bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent" />
+                  <FaMapMarkerAlt className="text-2xl text-white" />
                 </div>
                 <div>
                   <h3 className="text-2xl font-black bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-1">
@@ -1005,7 +1006,7 @@ const GradientGymLanding = () => {
                 </div>
               </div>
 
-              <div className="flex gap-4 pt-6">
+              {/* <div className="flex gap-4 pt-6">
                 {[
                   { Icon: FaFacebook, label: "Facebook" },
                   { Icon: FaInstagram, label: "Instagram" },
@@ -1021,7 +1022,7 @@ const GradientGymLanding = () => {
                     <Icon className="text-xl bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent" />
                   </motion.button>
                 ))}
-              </div>
+              </div> */}
             </motion.div>
 
             <motion.form
