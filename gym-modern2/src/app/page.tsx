@@ -1,6 +1,6 @@
 "use client";
 import Link from 'next/link';
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FaDumbbell,
@@ -31,6 +31,7 @@ import {
   FaLeaf,
   FaMagic,
 } from "react-icons/fa";
+import Image from 'next/image';
 
 const GradientGymLanding = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -270,7 +271,7 @@ const GradientGymLanding = () => {
             preserveAspectRatio="none"
           >
             <motion.path
-            //@ts-expect-error
+            // @ts-expect-error framer-motion path animation type mismatch
               variants={waveVariants}
               animate="animate"
               fill="url(#wave-gradient)"
@@ -296,7 +297,7 @@ const GradientGymLanding = () => {
             preserveAspectRatio="none"
           >
             <motion.path
-            // @ts-expect-error
+            // @ts-expect-error Framer Motion's path animation type mismatch with SVG path, safe to ignore for animation
               variants={waveVariants}
               animate="animate"
               fill="url(#wave-gradient-2)"
@@ -565,13 +566,15 @@ const GradientGymLanding = () => {
                 whileHover={{ y: -10, scale: 1.02 }}
               >
                 <div className="relative overflow-hidden">
-                  <img
+                  <Image
                     src={program.image}
                     alt={program.title}
                     className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700"
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = "https://via.placeholder.com/500x400/333/fff?text=Image+Not+Found";
                     }}
+                    width={500}
+                    height={400}
                   />
                   <div
                     className={`absolute inset-0 bg-gradient-to-t ${program.gradient} opacity-0 group-hover:opacity-80 transition-opacity duration-500`}
@@ -676,13 +679,16 @@ const GradientGymLanding = () => {
                 whileHover={{ y: -15, scale: 1.03 }}
               >
                 <div className="relative overflow-hidden">
-                  <img
+                  <Image
                     src={trainer.image}
                     alt={trainer.name}
                     className="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-700"
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = "https://via.placeholder.com/400x600/333/fff?text=Image+Not+Found";
                     }}
+                    width={400}
+                    height={600
+                    }
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
                   <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -892,13 +898,15 @@ const GradientGymLanding = () => {
                 whileHover={{ y: -10, scale: 1.02 }}
               >
                 <div className="flex items-center mb-6">
-                  <img
+                  <Image
                     src={testimonial.image}
                     alt={testimonial.name}
                     className="w-16 h-16 rounded-2xl mr-4 object-cover border-2 border-white/20 group-hover:border-white/40 transition-colors duration-300"
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = "https://via.placeholder.com/150x150/333/fff?text=Image+Not+Found";
                     }}
+                    width={64}
+                    height={64}
                   />
                   <div>
                     <h4 className="font-black text-white text-lg">
@@ -917,7 +925,7 @@ const GradientGymLanding = () => {
                 </div>
 
                 <p className="text-gray-300 italic font-light text-lg leading-relaxed">
-                  "{testimonial.text}"
+                  &quot;{testimonial.text}&quot;
                 </p>
               </motion.div>
             ))}
@@ -1141,7 +1149,7 @@ const GradientGymLanding = () => {
                 </span>
               </div>
               <p className="text-gray-300 mb-6 max-w-md font-light leading-relaxed">
-                Forge your legend at India's most elite fitness destination.
+                Forge your legend at India&#39;s most elite fitness destination.
                 Where ordinary people become extraordinary warriors through
                 relentless dedication and world-class training.
               </p>

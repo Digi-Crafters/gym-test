@@ -277,7 +277,7 @@ const TermsAndServices = () => {
                 </span>
               </div>
               <p className="text-gray-300 mb-6 max-w-md font-light leading-relaxed">
-                Forge your legend at India's most elite fitness destination. Where ordinary people become extraordinary warriors.
+                Forge your legend at India&#39;s most elite fitness destination. Where ordinary people become extraordinary warriors.
               </p>
             </div>
 
