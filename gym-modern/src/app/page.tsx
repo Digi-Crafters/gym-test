@@ -16,6 +16,7 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 import Image from "next/image";
+import Link from "next/link";
 
 const GymLanding = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -224,15 +225,12 @@ const GymLanding = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <button className="bg-gradient-to-r from-orange-500 to-red-500 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:shadow-orange-500/30 transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
-              Start Your Journey <FaDumbbell />
-            </button>
-            {/* <button
-              className="border-2 border-orange-500 px-8 py-4 rounded-full font-semibold text-lg hover:bg-orange-500 hover:text-black transition-all duration-300 flex items-center gap-2"
-              onClick={openTransformationVideo}
+            <Link
+              href={"#contact"}
+              className="bg-gradient-to-r from-orange-500 to-red-500 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:shadow-orange-500/30 transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
             >
-              <FaPlay /> Watch Our Story
-            </button> */}
+              Start Your Journey <FaDumbbell />
+            </Link>
           </motion.div>
 
           {/* Stats */}

@@ -1013,24 +1013,6 @@ const GradientGymLanding = () => {
                   </p>
                 </div>
               </div>
-
-              {/* <div className="flex gap-4 pt-6">
-                {[
-                  { Icon: FaFacebook, label: "Facebook" },
-                  { Icon: FaInstagram, label: "Instagram" },
-                  { Icon: FaTwitter, label: "Twitter" }
-                ].map(({ Icon, label }, index) => (
-                  <motion.button
-                    key={index}
-                    className="bg-gradient-to-r from-white/10 to-gray-300/10 backdrop-blur-sm hover:from-white/20 hover:to-gray-300/20 p-4 rounded-2xl transition-all duration-300 border border-white/10 hover:border-white/30 flex items-center justify-center"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                    aria-label={label}
-                  >
-                    <Icon className="text-xl bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent" />
-                  </motion.button>
-                ))}
-              </div> */}
             </motion.div>
 
             <motion.form
